@@ -1,0 +1,18 @@
+version: "2"
+services:
+  minetest:
+    build: minetestserver
+    restart: always
+    ports:
+     - "30000:30000/udp"
+    volumes:
+     - "./data/worlds:/minetest/worlds"
+     - "./minetest.conf:/minetest/minetest.conf"
+    working_dir: /minetest
+
+  webmail:
+    build: webmail
+    restart: always
+    ports:
+     - "8081:8080"
+    env_file: webmail.env
